@@ -65,7 +65,7 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 | Identifiant du commit `feat:` | `6d6bb4f` (feat: compterMots) |
 | Casse volontaire : la ligne changée | `return texte.split(/\s+/).length;` remplacée par `return 1;` (puis `git restore`, tout revient au vert : 49 sur 49) |
 | Casse volontaire : le test devenu rouge | « C1 : compte les mots séparés par un espace » et « C2 : plusieurs espaces, tabulations et retours à la ligne séparent aussi les mots » |
-| Pour aller plus loin : la deuxième fonction | |
+| Pour aller plus loin : la deuxième fonction | F3, `estEnMajuscules(message)`. Avant le code, le rouge vu est « does not provide an export named 'estEnMajuscules' ». Après le code, 54 tests sur 54 sont verts. En remplaçant la dernière ligne `return` par `return false;`, les tests C1 et C4 deviennent rouges. |
 
 Les critères C1 à C5 de votre fonction, recopiés de la fiche :
 
