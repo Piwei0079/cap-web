@@ -60,3 +60,12 @@ export function compterMots(message) {
   }
   return texte.split(/\s+/).length;
 }
+
+export function estEnMajuscules(message) {
+  if (typeof message !== 'string') {
+    return false;
+  }
+  // Une lettre est un caractère dont la minuscule et la majuscule diffèrent : « É » oui, « 1 » ou « ? » non.
+  const lettres = [...message].filter((caractere) => caractere.toLowerCase() !== caractere.toUpperCase());
+  return lettres.length >= 2 && lettres.every((lettre) => lettre === lettre.toUpperCase());
+}
