@@ -59,15 +59,23 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 
 | À remplir | Votre réponse |
 |---|---|
-| Fonction tirée | |
-| Le rouge vu (message exact) | |
-| Identifiant du commit `test:` | |
-| Identifiant du commit `feat:` | |
-| Casse volontaire : la ligne changée | |
-| Casse volontaire : le test devenu rouge | |
+| Fonction tirée | F2, `compterMots(message)` |
+| Le rouge vu (message exact) | `SyntaxError: The requested module '../public/js/brain.js' does not provide an export named 'compterMots'` |
+| Identifiant du commit `test:` | `502f080` (test: compterMots, critères C1 à C5) |
+| Identifiant du commit `feat:` | `6d6bb4f` (feat: compterMots) |
+| Casse volontaire : la ligne changée | `return texte.split(/\s+/).length;` remplacée par `return 1;` (puis `git restore`, tout revient au vert : 49 sur 49) |
+| Casse volontaire : le test devenu rouge | « C1 : compte les mots séparés par un espace » et « C2 : plusieurs espaces, tabulations et retours à la ligne séparent aussi les mots » |
 | Pour aller plus loin : la deuxième fonction | |
 
 Les critères C1 à C5 de votre fonction, recopiés de la fiche :
+
+- C1 : `'salut'` donne 1, `'où est le refuge'` donne 4.
+- C2 : `'un   deux'` donne 2, `'un\tdeux\ntrois'` donne 3.
+- C3 : `'   salut   '` donne 1.
+- C4 : `''` et les espaces seuls donnent 0.
+- C5 : ce qui n'est pas du texte donne 0, sans erreur.
+
+Chaque critère a au moins une assertion dans `tests/compterMots.test.js` (un `it` par critère, nommé C1 à C5).
 
 ## R4 · La revue de code
 
