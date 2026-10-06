@@ -9,11 +9,11 @@ const MOTS = {
   chemin: 'Pour trouver le chemin de la friperie la plus proche, demandez l\'adresse en boutique ou sur sa page.'
 };
 
-const liste = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
+const motsAffiches = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
 
 const REPONSES = {
   salut: 'Bonjour ! Je suis Cap Web, un assistant à règles. Écrivez « aide » pour voir ce que je sais faire.',
-  aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${liste}.`,
+  aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${motsAffiches}.`,
   test: 'Test bien reçu : mes règles fonctionnent.',
   repli: 'Je ne connais pas encore ce message. Écrivez « aide » pour voir ce que je sais faire.'
 };
