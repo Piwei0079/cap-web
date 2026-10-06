@@ -81,9 +81,11 @@ Chaque critère a au moins une assertion dans `tests/compterMots.test.js` (un `i
 
 | Patch | Accepté ou refusé | Fichier et ligne | Raison |
 |---|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
+| 1 « merci » | Accepté | `public/js/brain.js` (réponse `merci` + un `if`) et `tests/merci.test.js` (nouveau) | Le diff fait ce que dit la description, ne modifie aucun test existant ; `npm test` vert (45/45) et le contrat d'origine reste à 15/15. |
+| 2 « au revoir » et `normaliser()` | Refusé | `public/js/brain.js`, nouvelle `normaliser()` : `return String(message).toLowerCase();` (le `.trim()` a disparu) ; `tests/contrat/brain.contrat.test.js`, lignes 69, 71 et 86 | Régression cachée : `replyTo('  salut ')` donne le repli. Le patch affaiblit le contrat (il retire les espaces des assertions) pour rester vert, sans le dire dans la description. Avec le contrat d'origine : 2 rouges (« ignore la casse et les espaces autour », « reconnaît les deux mots du cahier personnel… »). |
+| 3 « le gras » | Refusé | `public/js/view.js`, ligne 13 : `document.createRange().createContextualFragment(enGras(msg.text))` | `createContextualFragment` interprète le texte comme du HTML, comme `innerHTML` : le patch contourne seulement le test qui cherche le mot `innerHTML`. Essai dans la page (essai-3) : `<b>gras</b>` s'affiche « gras » en gras, sans chevrons ; `<img src=x onerror=alert(1)>` exécuterait du code (XSS). Tests verts, mais la règle « un message reste du texte » est violée. |
+
+Méthode : une copie neuve de `base` par patch (`cp -r base essai-N`, `git init`, `git add .`), `git apply --stat` pour lire avant d'appliquer, puis `git apply`, `git add -N .`, `git diff`, `npm test`, et le contrat d'origine relancé sur le code de chaque patch. Les trois patchs annonçaient « npm test : tout est vert », et c'était vrai pour les trois : seuls la lecture du diff et les essais ont montré les deux pièges.
 
 Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez changé.
 
