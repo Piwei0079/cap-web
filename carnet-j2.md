@@ -92,3 +92,7 @@ Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez chan
 ## Fin de journée
 
 Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas faire ce matin. Relisez votre positionnement : une notion est-elle passée de « à renforcer » à « à l'aise » ?
+
+Membre 1 (Delrone) :
+
+Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux tests, écrire un test avant le code, et refuser un patch dont le diff ne correspond pas à la description.
