@@ -1,35 +1,45 @@
 # Carnet de bord · J2
 
-Binôme : bXX · Membres : … · Nos réglages sont dans `atelier/cahier-personnel.json` : ne les recopiez pas ici.
+Binôme : b07 · Membres : Delrone et Pierre-Yves · Nos réglages sont dans `atelier/cahier-personnel.json` : ne les recopiez pas ici.
 
 ## Mon positionnement (chacun de vous deux)
 
 Pour chaque notion, chacun écrit « à l'aise » ou « à renforcer ». Ce n'est ni évalué ni classé : c'est votre point de départ pour le bilan individuel de fin de module.
 
-| Notion | Membre 1 : … | Membre 2 : … |
+| Notion | Membre 1 : Delrone | Membre 2 : Pierre-Yves |
 |---|---|---|
-| Structure HTML | | |
-| CSS et responsive | | |
-| JavaScript | | |
-| DOM et événements | | |
-| Git | | |
-| Tests | | |
+| Structure HTML | | à l'aise |
+| CSS et responsive | | à l'aise |
+| JavaScript | | à l'aise |
+| DOM et événements | | à renforcer |
+| Git | | à l'aise |
+| Tests | | à l'aise |
 
 Chacun, en une phrase, son objectif personnel pour J2 et J3.
 
 Membre 1 :
 
-Membre 2 :
+Membre 2 : savoir créer et modifier des éléments de la page en JavaScript (createElement, textContent, événements) sans copier d'exemple.
 
 ## R1 · Les tests automatisés
 
 Les tests rouges du départ, et ce que vous en avez fait :
 
+Après le commit « J2 : nos réglages » : `node --test tests/contrat/brain.contrat.test.js` → 15 tests, 9 verts, 6 rouges.
+
 | Test rouge | Cause trouvée (une phrase) | Fichier | Message du commit `fix:` |
 |---|---|---|---|
-| | | | |
+| refuse le vide et les espaces seuls | `validateMessage` testait le vide sur le texte brut (`raw === ''`) avant le `trim()`, donc un message d'espaces était accepté. | `public/js/brain.js` | `fix: un message fait d'espaces est refusé comme vide` |
+| accepte 200 caractères et refuse 201 | La limite était écrite en dur (`280`) au lieu d'utiliser la constante `LIMITE` ; le message d'erreur, lui, citait bien `LIMITE`. | `public/js/brain.js` | `fix: la limite de longueur utilise LIMITE au lieu de 280 écrit en dur` |
+| ignore la casse et les espaces autour | `replyTo` passait le message en minuscules sans retirer les espaces autour, donc «  SALUT  » n'était pas reconnu. | `public/js/brain.js` | `fix: replyTo retire les espaces autour avant de reconnaître un mot (même commit que la ligne suivante)` |
+| reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour | Même cause : sans `trim()`, «  MISSION  » tombait dans le repli. | `public/js/brain.js` | `fix: replyTo retire les espaces autour avant de reconnaître un mot` |
+| répond à une phrase inconnue par un repli distinct | Un message inconnu recevait exactement la réponse de « aide » ; ajout d'une réponse `repli` à part. | `public/js/brain.js` | `fix: un message inconnu reçoit un repli distinct de la réponse à aide` |
+| view.js affiche du texte et ne décide pas des réponses | `view.js` affichait avec `innerHTML`, donc `<b>gras</b>` aurait été interprété comme du HTML ; remplacé par un `<strong>` créé avec `textContent` et le texte ajouté comme texte. | `public/js/view.js` | `fix: view.js affiche les messages avec textContent, sans innerHTML` |
+
+Résultat : `node --test tests/contrat/brain.contrat.test.js` → 15 tests, 15 verts ; `npm test` → 44 sur 44 ; `git diff --stat depart -- tests cahier-personnel.json` → vide (ni les tests ni le cahier n'ont été modifiés). Dans la page (`npm start`), `<b>gras</b>` s'affiche tel quel, chevrons compris : « Vous : <b>gras</b> », puis le repli de Cap Web. 5 commits `fix:`, un par défaut (le défaut du `trim()` dans `replyTo` faisait rougir deux tests).
 
 Avec l'agent : ce qu'il a proposé et que vous avez refusé, et pourquoi.
+Corrections faites sans dsh : chaque test rouge lu (nom = la règle, message = l'écart), la cause cherchée dans `public/js/`, le diff relu, les tests relancés après chaque correction.
 
 Pour aller plus loin : le nom renommé par votre commit `refactor:`, et pourquoi le nouveau est plus clair.
 
