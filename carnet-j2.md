@@ -43,6 +43,8 @@ Corrections faites sans dsh : chaque test rouge lu (nom = la règle, message = l
 
 Pour aller plus loin : le nom renommé par votre commit `refactor:`, et pourquoi le nouveau est plus clair.
 
+`liste` devient `motsAffiches` dans `public/js/brain.js` (commit « refactor: liste devient motsAffiches »). `liste` ne disait ni ce qu'il contient ni à quoi il sert, et le même nom désigne, dans `app.js`, l'élément `<ul>` de la conversation : deux choses différentes sous un même nom. `motsAffiches` dit que c'est le texte des deux mots du cahier, tel qu'il s'affiche dans la réponse à « aide ». Constante non exportée, deux occurrences remplacées ; `npm test` reste à 54 sur 54.
+
 ## R2 · Documenter le projet
 
 Vos trois documents sont dans `atelier` : `README.md`, `SPEC.md` et `AGENTS.md`. Rien à recopier ici.
