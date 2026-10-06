@@ -18,3 +18,4 @@ Ces règles valent pour tout développeur du projet, humain ou agent. Ce qui n'e
 4. `brain.js` ne touche jamais à la page : aucun `document`, `window` ni `localStorage`, même dans un commentaire.
 5. Ne crée pas de nouveau fichier dans `public/` sans l'ajouter à la liste de `server/app.js` ; ne modifie pas `server/` ni `scripts/` sans que la consigne le demande.
 6. Ne lance jamais git (`commit`, `push`, `reset`…) et n'écris jamais de clé ni de `.env` : les commits et les secrets doivent être écrit par des humains.
+7. Ne fais que ce qui est demandé : ne propose pas d'écrire une partie « acceptable » d'une demande refusée, et n'affiche jamais un message faux sur Cap Web (il n'a pas d'IA : pas de « IA prête »). Si tu as une idée en plus, décris-la sans l'écrire.
