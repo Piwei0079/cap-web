@@ -29,6 +29,33 @@ npm test
 
 Tous les tests doivent être verts (`fail 0`). Sous Windows, si PowerShell refuse `npm`, tapez `npm.cmd` à la place.
 
+## Arborescence
+
+```text
+atelier/
+├── public/                      ce que le navigateur reçoit
+│   ├── index.html               la page : formulaire, liste des messages, compteur, statut
+│   ├── styles.css               la mise en forme, avec la version mobile (sous 600 px)
+│   └── js/
+│       ├── app.js               le câblage : formulaire, compteur, mémoire, version, conseil
+│       ├── brain.js             le cerveau : valide un message et choisit la réponse
+│       └── view.js              l'affichage de la conversation, en textContent
+├── server/
+│   ├── app.js                   le serveur : sert les fichiers de public/, /version.json et /api/conseil
+│   └── start.js                 lance le serveur sur http://127.0.0.1:3000
+├── tests/
+│   ├── contrat/                 le contrat du formateur : ne jamais le modifier
+│   ├── server.test.js           les tests du serveur
+│   ├── conseil.test.js          le test de la route /api/conseil
+│   ├── compterMots.test.js      les tests de compterMots (C1 à C5)
+│   └── estEnMajuscules.test.js  les tests de estEnMajuscules (C1 à C5)
+├── cahier-personnel.json        nos réglages : limite et mots (ne pas modifier)
+├── README.md, SPEC.md, AGENTS.md  la documentation : ce fichier, la spécification, les conventions
+└── package.json                 les commandes npm (start, test, lint)
+```
+
+Les autres fichiers (`browser/`, `scripts/`, `eslint.config.js`, `playwright*.config.js`, `dependances-autorisees.json`) sont les outils de vérification fournis.
+
 ## Les 3 modules de `public/js`
 
 - `brain.js` : le cerveau. Il vérifie un message (`validateMessage` : pas vide, pas plus de `LIMITE` caractères, espaces autour retirés) et choisit la réponse (`replyTo`). Fonctions pures : il ne touche jamais à la page.
