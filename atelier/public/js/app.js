@@ -75,6 +75,13 @@ effacer.addEventListener('click', () => {
 champ.maxLength = LIMITE;
 limiteElt.textContent = String(LIMITE);
 champ.addEventListener('input', mettreAJourCompteur);
+// Entrée envoie (par le même chemin que le bouton), Maj+Entrée va à la ligne.
+champ.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    formulaire.requestSubmit();
+  }
+});
 mettreAJourCompteur();
 
 charger();
