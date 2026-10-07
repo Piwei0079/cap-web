@@ -70,3 +70,10 @@ export function estEnMajuscules(message) {
   const lettres = [...message].filter((caractere) => caractere.toLowerCase() !== caractere.toUpperCase());
   return lettres.length >= 2 && lettres.every((lettre) => lettre === lettre.toUpperCase());
 }
+
+// Un message de l'historique : un objet, un rôle connu et un texte.
+export function estMessage(m) {
+  return typeof m === 'object' && m !== null
+    && (m.role === 'user' || m.role === 'assistant')
+    && typeof m.text === 'string';
+}
