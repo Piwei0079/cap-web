@@ -106,3 +106,11 @@ Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux test
 - Prédiction (avant de toucher au code) : « aide » dira encore « deux mots à moi », parce que « deux » est écrit à la main dans la phrase ; mais la liste affichera bien trois mots, parce qu'elle est fabriquée par `Object.keys(MOTS).map(...)`.
 - Constat : avec le mot « costume » ajouté, « aide » répondait « …et deux mots à moi : « mission » et « chemin » et « costume ». » : prédiction juste.
 - Correction : « deux » remplacé par `${Object.keys(MOTS).length}` ; « aide » répond maintenant « …et 3 mots à moi : « mission » et « chemin » et « costume ». ». `npm run lint` OK, `npm test` : fail 0.
+
+### Étape 3 · L'accessibilité avec Lighthouse
+
+Avec le label du champ, le score Accessibilité de Lighthouse est de 100.
+
+Sans le label, le score tombe à 93. L'alerte est « Les éléments de formulaire n'ont pas de libellé associé » (en anglais « Form elements do not have associated labels ») et elle vise le textarea du message. Un lecteur d'écran ne pourrait plus dire à quoi sert le champ. Le label a ensuite été remis.
+
+Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanche, Entrée ajoute une nouvelle ligne au lieu d'envoyer, car le champ est un textarea. Il faut encore une touche Tab pour aller sur le bouton Envoyer, puis Entrée pour envoyer le message.
