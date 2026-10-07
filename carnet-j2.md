@@ -106,3 +106,16 @@ Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux test
 - Prédiction (avant de toucher au code) : « aide » dira encore « deux mots à moi », parce que « deux » est écrit à la main dans la phrase ; mais la liste affichera bien trois mots, parce qu'elle est fabriquée par `Object.keys(MOTS).map(...)`.
 - Constat : avec le mot « costume » ajouté, « aide » répondait « …et deux mots à moi : « mission » et « chemin » et « costume ». » : prédiction juste.
 - Correction : « deux » remplacé par `${Object.keys(MOTS).length}` ; « aide » répond maintenant « …et 3 mots à moi : « mission » et « chemin » et « costume ». ». `npm run lint` OK, `npm test` : fail 0.
+
+### Étape 2 · Le compteur de caractères
+
+- `<p id="compteur">` sous le champ, relié au `textarea` par `aria-describedby="compteur"` ; dans `app.js`, `mettreAJourCompteur()` écrit `longueur / 200` avec `textContent`, appelée à chaque événement `input`, au chargement et après l'envoi (vider le champ par le code ne déclenche pas `input`). Vérifié dans la page : « 0 / 200 », suit la frappe, revient à 0 après l'envoi, console sans rouge.
+- Compris : `addEventListener('input', mettreAJourCompteur)` donne la fonction pour qu'elle soit appelée plus tard ; avec `mettreAJourCompteur()`, elle serait exécutée une seule fois tout de suite et `addEventListener` recevrait `undefined` : le compteur resterait bloqué, sans erreur.
+
+### Étape 3 · L'accessibilité avec Lighthouse
+
+- Lighthouse (Edge, catégorie Accessibilité seule), page complète : **100**.
+- Sans la balise `label` du champ : **93**, alerte « Form elements do not have associated labels » (« Labels ensure that form controls are announced properly by assistive technologies, like screen readers »). Une erreur rouge dans la console aussi : le `<span id="limite">` était dans le label, donc `limiteElt` valait `null` et `limiteElt.textContent` plantait.
+- Pourquoi : le `label for="message"` fait annoncer « Votre message, 200 caractères maximum » par un lecteur d'écran ; sans lui, seulement « zone de texte ».
+- Label remis avec `git restore -- public/index.html` (le Ctrl+Z n'avait pas suffi).
+- Clavier seul : Tab jusqu'au champ, message tapé, Entrée : le message est envoyé.
