@@ -154,3 +154,17 @@ Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanch
 - Vérifié dans la page : « salut » (5 fois) donne toujours sa réponse habituelle, rien de cassé ; « conseil » donne un conseil qui varie, « CONSEIL » aussi ; serveur arrêté (Ctrl+C), « conseil » affiche le message d'erreur, sans écran blanc.
 - Compris : serveur arrêté = aucune réponse, c'est `fetch` lui-même qui échoue et envoie dans le `catch` (le `if (!reponse.ok)` n'est pas atteint) ; un 404 est une réponse, c'est `reponse.ok` qui l'attrape.
 - Fusion avec la version de Delrone (faite en parallèle) : gardé notre `if` avec `toLowerCase()` (sa version `controle.value === 'conseil'` ne reconnaissait pas « CONSEIL ») et une seule fonction `demanderConseil` (deux déclarations auraient été une SyntaxError dans un module).
+
+### Étapes 8 à 10 · GitHub à deux
+
+- Pierre-Yves = A : dépôt privé `Piwei0079/cap-web` créé vide ; l'ancien `origin` (`delrone91/cap-web-j2`) renommé `ancien` avec `git remote rename origin ancien`, puis `git remote add origin …/cap-web.git` et `git push -u origin main`. Delrone invité comme collaborateur.
+- Branche `docs/arborescence` (arborescence commentée dans `atelier/README.md`), poussée, pull request ouverte avec Delrone en Reviewer.
+
+### Étape 11 · Les quatre attaques
+
+1. Serveur arrêté, puis « conseil » : « Le serveur ne répond pas : conseil indisponible. », pas d'écran blanc. ✔
+2. Message trop long : le champ bloque à 200 caractères (`maxlength`, un texte de 201 collé devient 200 et est accepté). En forçant 201 caractères par la console (`document.querySelector('#message').value = 'a'.repeat(201)`), puis Envoyer : statut « Le message doit contenir 200 caractères au maximum. », rien n'est ajouté. ✔ Deux protections : `maxlength` dans la page, `validateMessage` dans le code.
+3. `<b>test</b>` s'affiche tel quel, chevrons compris. ✔
+4. 375 px (mode appareil) : tout reste aligné et lisible, Envoyer prend toute la largeur. ✔
+
+Aucune attaque n'est passée : pas de commit `fix:` nécessaire.
