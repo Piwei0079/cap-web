@@ -119,3 +119,9 @@ Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux test
 - Pourquoi : le `label for="message"` fait annoncer « Votre message, 200 caractères maximum » par un lecteur d'écran ; sans lui, seulement « zone de texte ».
 - Label remis avec `git restore -- public/index.html` (le Ctrl+Z n'avait pas suffi).
 - Clavier seul : Tab jusqu'au champ, message tapé, Entrée : le message est envoyé.
+
+### Étape 4 · La version mobile
+
+- Media query écrite par Pierre-Yves à la fin de `styles.css` : `@media (max-width: 600px) { button[type="submit"] { align-self: stretch; width: 100%; } }`. Le sélecteur `button[type="submit"]` vise Envoyer et pas Effacer (qui est `type="button"`) ; `align-self: stretch` annule le `flex-start` du bouton dans le formulaire en colonne.
+- Vérifié (Edge, mode appareil) : à 375 px, Envoyer prend toute la largeur ; au-dessus de 600 px, il reste petit, à gauche. `max-width` = jusqu'à 600 px ; `min-width` ferait l'inverse.
+- Effacer laissé tel quel : la consigne ne vise qu'Envoyer, et c'est un bouton secondaire.
