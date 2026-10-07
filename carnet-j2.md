@@ -8,16 +8,16 @@ Pour chaque notion, chacun écrit « à l'aise » ou « à renforcer ». Ce n'es
 
 | Notion | Membre 1 : Delrone | Membre 2 : Pierre-Yves |
 |---|---|---|
-| Structure HTML | | à l'aise |
-| CSS et responsive | | à l'aise |
-| JavaScript | | à l'aise |
-| DOM et événements | | à renforcer |
-| Git | | à l'aise |
-| Tests | | à l'aise |
+| Structure HTML | à l'aise | à l'aise |
+| CSS et responsive | à l'aise | à l'aise |
+| JavaScript | à renforcer | à l'aise |
+| DOM et événements | à renforcer | à renforcer |
+| Git | à renforcer | à l'aise |
+| Tests | à renforcer | à l'aise |
 
 Chacun, en une phrase, son objectif personnel pour J2 et J3.
 
-Membre 1 :
+Membre 1 : savoir expliquer chaque fonction de brain.js, view.js et app.js sans regarder le code.
 
 Membre 2 : savoir créer et modifier des éléments de la page en JavaScript (createElement, textContent, événements) sans copier d'exemple.
 
@@ -93,6 +93,6 @@ Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez chan
 
 Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas faire ce matin. Relisez votre positionnement : une notion est-elle passée de « à renforcer » à « à l'aise » ?
 
-Membre 1 (Delrone) :
+Membre 1 (Delrone) : ce soir, je sais lire un test rouge pour trouver la cause dans le code, écrire un test avant la fonction, et réunir deux historiques Git qui ont divergé.
 
 Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux tests, écrire un test avant le code, et refuser un patch dont le diff ne correspond pas à la description.
