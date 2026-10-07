@@ -9,9 +9,14 @@ const statut = document.querySelector('#status');
 const effacer = document.querySelector('#effacer');
 const versionElt = document.querySelector('#version');
 const limiteElt = document.querySelector('#limite');
+const compteur = document.querySelector('#compteur');
 
 const CLE = 'capweb.historique';
 const historique = [];
+
+function mettreAJourCompteur() {
+  compteur.textContent = `${champ.value.length} / ${LIMITE}`;
+}
 
 function sauvegarder() {
   localStorage.setItem(CLE, JSON.stringify(historique));
@@ -45,6 +50,7 @@ formulaire.addEventListener('submit', (event) => {
   sauvegarder();
   renderMessages(historique, liste);
   champ.value = '';
+  mettreAJourCompteur();
   statut.textContent = '';
   champ.focus();
 });
@@ -62,6 +68,8 @@ effacer.addEventListener('click', () => {
 // La limite vient de brain.js : un seul endroit à modifier.
 champ.maxLength = LIMITE;
 limiteElt.textContent = String(LIMITE);
+champ.addEventListener('input', mettreAJourCompteur);
+mettreAJourCompteur();
 
 charger();
 renderMessages(historique, liste);
