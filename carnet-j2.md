@@ -133,3 +133,16 @@ Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanch
 - Media query écrite par Pierre-Yves à la fin de `styles.css` : `@media (max-width: 600px) { button[type="submit"] { align-self: stretch; width: 100%; } }`. Le sélecteur `button[type="submit"]` vise Envoyer et pas Effacer (qui est `type="button"`) ; `align-self: stretch` annule le `flex-start` du bouton dans le formulaire en colonne.
 - Vérifié (Edge, mode appareil) : à 375 px, Envoyer prend toute la largeur ; au-dessus de 600 px, il reste petit, à gauche. `max-width` = jusqu'à 600 px ; `min-width` ferait l'inverse.
 - Effacer laissé tel quel : la consigne ne vise qu'Envoyer, et c'est un bouton secondaire.
+
+### Étape 5 · Plan B : la version, même en cas de panne
+
+- Le `fetch(...).then(...).then(...).catch(() => {})` de la version est réécrit en `async function afficherVersion()` avec `await`, `try` et `catch`. Avant, une panne laissait « version… » sans explication ; maintenant le pied de page affiche « version indisponible ».
+- Vérifié : « version dev » avec `/version.json` ; « version indisponible » avec `/version2.json` (chemin remis ensuite).
+- Compris : avec `/version2.json`, le serveur répond bien (404) ; `fetch` ne rejette que s'il n'y a aucune réponse (serveur arrêté). C'est notre `if (!reponse.ok) throw new Error(...)` qui envoie dans le `catch`. `donnees.version` lit la propriété `version` de l'objet `{ version: "dev" }`.
+
+### Étape 6 · La route /api/conseil
+
+- Dans `server/app.js`, au-dessus de `/version.json` : `/api/conseil` renvoie `{ conseil: '...' }`, tiré au hasard parmi trois conseils écrits par nous (jeudi à 1 €, nouvelles pièces le lundi, bon de 3 € pour 3 vêtements) avec `conseils[Math.floor(Math.random() * conseils.length)]` (0, 1 ou 2). Même schéma que `/version.json` : `JSON.stringify`, `res.writeHead(200, { 'content-type': 'application/json…' })`, `res.end`.
+- Vérifié : http://127.0.0.1:3000/api/conseil affiche du JSON qui change à chaque rechargement (après redémarrage du serveur).
+- Test `tests/conseil.test.js` (préparation copiée de `server.test.js`) : `fetch` de `${baseUrl}/api/conseil`, statut 200, `content-type` qui contient `application/json`. `npm test` : 55 sur 55. `baseUrl` est l'adresse du serveur de test démarré par `before(...)` sur un port libre, pas celui de `npm start`.
+- Casse volontaire : avec le chemin changé en `/api/conseils`, le test devient rouge (404 au lieu de 200).
