@@ -6,14 +6,15 @@ export const LIMITE = 200;
 
 const MOTS = {
   mission: 'Notre mission : donner une seconde vie aux vêtements et aux objets, à petits prix.',
-  chemin: 'Pour trouver le chemin de la friperie la plus proche, demandez l\'adresse en boutique ou sur sa page.'
+  chemin: 'Pour trouver le chemin de la friperie la plus proche, demandez l\'adresse en boutique ou sur sa page.',
+  costume: 'Un costume d\'occasion, de la veste au trois-pièces, se trouve souvent en friperie pour une fraction du prix du neuf.'
 };
 
 const motsAffiches = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
 
 const REPONSES = {
   salut: 'Bonjour ! Je suis Cap Web, un assistant à règles. Écrivez « aide » pour voir ce que je sais faire.',
-  aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${motsAffiches}.`,
+  aide: `Je connais « salut », « aide », « test », et ${Object.keys(MOTS).length} mots à moi : ${motsAffiches}.`,
   test: 'Test bien reçu : mes règles fonctionnent.',
   repli: 'Je ne connais pas encore ce message. Écrivez « aide » pour voir ce que je sais faire.'
 };

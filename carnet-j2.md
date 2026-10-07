@@ -98,3 +98,11 @@ Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas f
 Membre 1 (Delrone) : ce soir, je sais lire un test rouge pour trouver la cause dans le code, écrire un test avant la fonction, et réunir deux historiques Git qui ont divergé.
 
 Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux tests, écrire un test avant le code, et refuser un patch dont le diff ne correspond pas à la description.
+
+## J3 · Terminer Cap Web
+
+### Étape 1 · Le troisième mot
+
+- Prédiction (avant de toucher au code) : « aide » dira encore « deux mots à moi », parce que « deux » est écrit à la main dans la phrase ; mais la liste affichera bien trois mots, parce qu'elle est fabriquée par `Object.keys(MOTS).map(...)`.
+- Constat : avec le mot « costume » ajouté, « aide » répondait « …et deux mots à moi : « mission » et « chemin » et « costume ». » : prédiction juste.
+- Correction : « deux » remplacé par `${Object.keys(MOTS).length}` ; « aide » répond maintenant « …et 3 mots à moi : « mission » et « chemin » et « costume ». ». `npm run lint` OK, `npm test` : fail 0.
