@@ -120,12 +120,6 @@ Membre 2 (Pierre-Yves) : ce soir, je sais corriger le code sans toucher aux test
 - Label remis avec `git restore -- public/index.html` (le Ctrl+Z n'avait pas suffi).
 - Clavier seul : Tab jusqu'au champ, message tapé ; Entrée dans le champ ajoute une nouvelle ligne (c'est un `textarea`), il faut aller sur le bouton Envoyer puis Entrée pour envoyer (observé aussi par Delrone ci-dessous).
 
-### Étape 4 · La version mobile
-
-- Media query écrite par Pierre-Yves à la fin de `styles.css` : `@media (max-width: 600px) { button[type="submit"] { align-self: stretch; width: 100%; } }`. Le sélecteur `button[type="submit"]` vise Envoyer et pas Effacer (qui est `type="button"`) ; `align-self: stretch` annule le `flex-start` du bouton dans le formulaire en colonne.
-- Vérifié (Edge, mode appareil) : à 375 px, Envoyer prend toute la largeur ; au-dessus de 600 px, il reste petit, à gauche. `max-width` = jusqu'à 600 px ; `min-width` ferait l'inverse.
-- Effacer laissé tel quel : la consigne ne vise qu'Envoyer, et c'est un bouton secondaire.
-
 Notes de Delrone sur l'étape 3 (faite aussi de son côté) :
 
 Avec le label du champ, le score Accessibilité de Lighthouse est de 100.
@@ -133,3 +127,9 @@ Avec le label du champ, le score Accessibilité de Lighthouse est de 100.
 Sans le label, le score tombe à 93. L'alerte est « Les éléments de formulaire n'ont pas de libellé associé » (en anglais « Form elements do not have associated labels ») et elle vise le textarea du message. Un lecteur d'écran ne pourrait plus dire à quoi sert le champ. Le label a ensuite été remis.
 
 Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanche, Entrée ajoute une nouvelle ligne au lieu d'envoyer, car le champ est un textarea. Il faut encore une touche Tab pour aller sur le bouton Envoyer, puis Entrée pour envoyer le message.
+
+### Étape 4 · La version mobile
+
+- Media query écrite par Pierre-Yves à la fin de `styles.css` : `@media (max-width: 600px) { button[type="submit"] { align-self: stretch; width: 100%; } }`. Le sélecteur `button[type="submit"]` vise Envoyer et pas Effacer (qui est `type="button"`) ; `align-self: stretch` annule le `flex-start` du bouton dans le formulaire en colonne.
+- Vérifié (Edge, mode appareil) : à 375 px, Envoyer prend toute la largeur ; au-dessus de 600 px, il reste petit, à gauche. `max-width` = jusqu'à 600 px ; `min-width` ferait l'inverse.
+- Effacer laissé tel quel : la consigne ne vise qu'Envoyer, et c'est un bouton secondaire.
