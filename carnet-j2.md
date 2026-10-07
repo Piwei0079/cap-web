@@ -168,3 +168,8 @@ Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanch
 4. 375 px (mode appareil) : tout reste aligné et lisible, Envoyer prend toute la largeur. ✔
 
 Aucune attaque n'est passée : pas de commit `fix:` nécessaire.
+
+### Étapes 10 et 11 · Relecture croisée et README final
+
+- Étape 10 : PR #1 `docs/arborescence` (Pierre-Yves) relue et approuvée par Delrone, fusionnée par Pierre-Yves ; PR #2 `feat/couleur` (Delrone : `--accent` et `--accent-fonce` en vert `#2e7d32`) relue par Pierre-Yves avec `git diff main...origin/feat/couleur` (trois points : seulement ce que la branche apporte), lint et `npm test` (55/55) lancés sur la branche, contraste 5,1:1 vérifié, commentaire « Bravo » puis Approve ; fusionnée par Delrone. `git log --oneline --graph` montre les deux fusions.
+- Étape 11 : README final (3 mots, « conseil », compteur, version mobile, adresse du dépôt `Piwei0079/cap-web`, section `/api/conseil`). Ses commandes ont été vérifiées sur un clone neuf du dépôt local (`npm ci`, `npm test` 55/55, page 200, `/api/conseil` en JSON). Le test par Delrone dans son propre clone reste à faire (parti avant la fin).
