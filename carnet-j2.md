@@ -151,6 +151,6 @@ Au clavier seul, une seule touche Tab suffit pour atteindre le champ. En revanch
 
 - `demanderConseil()` dans `app.js` : `await fetch('/api/conseil')` (chemin relatif : même serveur que la page ; `baseUrl` n'existe que dans les tests), `reponse.ok` vérifié, `return donnees.conseil` ; en cas d'erreur, « Le serveur ne répond pas : conseil indisponible. ».
 - Dans l'écouteur `submit`, devenu `async` (sans `async`, `await` est une SyntaxError et tout `app.js` ne se charge plus) : si `controle.value.toLowerCase() === 'conseil'`, la réponse est `await demanderConseil()`, sinon `replyTo(...)`.
-- Vérifié dans la page : « conseil » donne un conseil qui varie, « CONSEIL » aussi ; serveur arrêté (Ctrl+C), « conseil » affiche le message d'erreur, sans écran blanc.
+- Vérifié dans la page : « salut » (5 fois) donne toujours sa réponse habituelle, rien de cassé ; « conseil » donne un conseil qui varie, « CONSEIL » aussi ; serveur arrêté (Ctrl+C), « conseil » affiche le message d'erreur, sans écran blanc.
 - Compris : serveur arrêté = aucune réponse, c'est `fetch` lui-même qui échoue et envoie dans le `catch` (le `if (!reponse.ok)` n'est pas atteint) ; un 404 est une réponse, c'est `reponse.ok` qui l'attrape.
 - Fusion avec la version de Delrone (faite en parallèle) : gardé notre `if` avec `toLowerCase()` (sa version `controle.value === 'conseil'` ne reconnaissait pas « CONSEIL ») et une seule fonction `demanderConseil` (deux déclarations auraient été une SyntaxError dans un module).
